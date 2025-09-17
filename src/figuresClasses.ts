@@ -21,8 +21,12 @@ class Triangle implements Figure {
   private c: number;
 
   constructor(color: Color, a: number, b: number, c: number) {
-    if (a <= 0 || b <= 0 || c <= 0) {
-      throw new Error('Triangle sides must be positive');
+    if (
+      !Number.isFinite(a) || a <= 0 ||
+      !Number.isFinite(b) || b <= 0 ||
+      !Number.isFinite(c) || c <= 0
+    ) {
+      throw new Error('Triangle sides must be finite positive numbers');
     }
 
     const longest = Math.max(a, b, c);
@@ -54,8 +58,8 @@ class Circle implements Figure {
   private radius: number;
 
   constructor(color: Color, radius: number) {
-    if (radius <= 0) {
-      throw new Error('Circle radius must be positive');
+    if (!Number.isFinite(radius) || radius <= 0) {
+      throw new Error('Circle radius must be a finite positive number');
     }
 
     this.color = color;
@@ -79,8 +83,8 @@ class Rectangle implements Figure {
   private height: number;
 
   constructor(color: Color, width: number, height: number) {
-    if (width <= 0 || height <= 0) {
-      throw new Error('Rectangle sides must be positive');
+    if (!Number.isFinite(width) || width <= 0 || !Number.isFinite(height) || height <= 0) {
+      throw new Error('Rectangle width and height must be finite positive numbers');
     }
 
     this.color = color;
